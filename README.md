@@ -133,3 +133,5 @@ def test_in(data):
 
 ### Faça o commit
 Com os testes passando, faça o commit com a seguinte mensagem: `Commit 3: Testing with fixtures`.
+
+<-rw-rw-r-- 1 luisa-carvalhaes luisa-carvalhaes 17 Jun 11 20:19 Commit 1: testes executados localmente e via GitHub Actions. -->
