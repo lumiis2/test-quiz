@@ -1,6 +1,31 @@
 import pytest
 from model import Question
 
+@pytest.fixture
+def question_with_choices():
+    question = Question(title='Capital of Brazil?', max_selections=2)
+    question.add_choice('Brasilia', True)
+    question.add_choice('Rio de Janeiro', False)
+    question.add_choice('Sao Paulo', False)
+    return question
+
+
+def test_fixture_question_contains_multiple_choices(question_with_choices):
+    assert len(question_with_choices.choices) == 3
+    assert question_with_choices.choices[0].text == 'Brasilia'
+    assert question_with_choices.choices[0].is_correct
+
+
+def test_fixture_question_corrects_selected_choices(question_with_choices):
+    correct_choice = question_with_choices.choices[0]
+    incorrect_choice = question_with_choices.choices[1]
+
+    result = question_with_choices.correct_selected_choices(
+        [correct_choice.id, incorrect_choice.id]
+    )
+
+    assert result == [correct_choice.id]
+
 
 def test_create_question():
     question = Question(title='q1')
